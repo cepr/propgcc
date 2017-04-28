@@ -107,7 +107,7 @@ export BUGURL
 #
 # configure options for propgcc
 #
-CONFIG_OPTIONS=--with-pkgversion=$(PROPGCC_VERSION) --with-bugurl=$(BUGURL) $(CFGCROSS)
+CONFIG_OPTIONS=--with-pkgversion=$(PROPGCC_VERSION) --with-bugurl=$(BUGURL) $(CFGCROSS) --disable-werror
 
 .PHONY:	all
 
@@ -233,7 +233,7 @@ $(BUILD)/gdb/gdb-built:	binutils gcc $(BUILD)/gdb/gdb-configured
 
 $(BUILD)/gdb/gdb-configured:	$(BUILD)/gdb/gdb-created
 	@$(ECHO) Configuring gdb
-	@$(CD) $(BUILD)/gdb; $(ROOT)/gdb/configure $(CFGCROSS) --target=propeller-elf --prefix=$(PREFIX) --with-system-gdbinit=$(PREFIX)/lib/gdb/gdbinit $(WITH_CURSES)
+	@$(CD) $(BUILD)/gdb; $(ROOT)/gdb/configure $(CFGCROSS) --target=propeller-elf --prefix=$(PREFIX) --with-system-gdbinit=$(PREFIX)/lib/gdb/gdbinit $(WITH_CURSES) --disable-werror
 	@$(TOUCH) $@
 
 ###########
