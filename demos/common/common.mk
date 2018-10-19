@@ -70,7 +70,7 @@ endif
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 %.o: %.cpp
-	$(CC) $(CXXFLAGS) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 %.o: %.s
 	$(CC) -o $@ -c $<
@@ -87,6 +87,9 @@ endif
 %.cog: %.cogc
 	$(CC) $(CFLAGS_NO_MODEL) -mcog -xc -r -o $@ $<
 	$(OBJCOPY) --localize-text --rename-section .text=$@ $@
+
+%.cog: %.elf
+	$(OBJCOPY) --localize-text --rename-section .text=$@ $< $@
 
 #
 # a .ecog program is an object file that contains code intended to
